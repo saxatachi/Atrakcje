@@ -1,0 +1,21 @@
+.option__elements{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    // background-color: #555555;
+    background: linear-gradient(
+  to right,
+  #555555,
+  #bebebe);
+background-size: 5px 100%;
+&__option{
+  display:grid;
+  justify-content: center;
+  cursor: pointer;
+  height:100px;
+  a{
+    font-size: 25px;
+    font-weight: 700;
+  }
+}
+}
