@@ -11,7 +11,20 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+# import django_heroku
+if os.name == 'nt':
+    import platform
+    OSGEO4W = r"C:\OSGeo4W"
+    if '64' in platform.architecture()[0]:
+        OSGEO4W += "64"
+    assert os.path.isdir(OSGEO4W), "Directory does not exist: " + OSGEO4W
+    os.environ['OSGEO4W_ROOT'] = OSGEO4W
+    os.environ['GDAL_DATA'] = OSGEO4W + r"\share\gdal"
+    os.environ['PROJ_LIB'] = OSGEO4W + r"\share\proj"
+    os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH'] 
+GDAL_LIBRARY_PATH = r'C:\OSGeo4W64\bin\gdal300' 
+# BUILD_WITH_GEO_LIBRARIES=1
+# GDAL_DATA = r'C:\Users\Michal\AppData\Local\Programs\Python\Python37\Lib\site-packages\osgeo\data\gdal'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -37,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
+    'django.contrib.gis.geos',
     'rest_framework',
     'frontend',
 ]
@@ -75,12 +90,12 @@ WSGI_APPLICATION = 'atrakcje.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 # Password validation
@@ -120,3 +135,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+import dj_database_url
+DATABASES={}
+DATABASES['default'] = dj_database_url.config(default='postgres://leeqviudlrnkqb:a11a98ce2db402986226b6dc35606f2b508d67889922fd2bf6126662b3662f46@ec2-79-125-4-72.eu-west-1.compute.amazonaws.com:5432/dbdg16em0mm93k')
+DATABASES['default']['ENGINE']='django.contrib.gis.db.backends.postgis'
+

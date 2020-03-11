@@ -4,27 +4,36 @@
     width: 100%;
     grid-template-columns: 3fr 1fr;
     grid-template-rows: 1fr;
-    &__red{
-        background-color: red;
-        grid-column: 2/3;
-        grid-row: 1/2;
+    &__color{
+        background-color: yellow;
     }
-    &__options{
+    &__option{
+        
+        display: grid;
         background-color:white;
-        grid-column: 1/2;
-        grid-row: 1/2;
+        grid-template-columns: 1fr 1fr;
+        
+        &__road{
+            position: absolute;
+            grid-column: 1/2;
+            grid-row: 1/2;
+            top:15%;
+            left:10%;
+            
+        }
     }
     &__frame{
         position: absolute;
-        background-color: yellow;
+        
         height: 60%;
-        width: 60%;
-        top: 35%;
-        left: 39.5%;
+        width: 50%;
+        top: 15%;
+        left: 47.5%;
+        
     }
 }
-// .leaflet-container{
-//     height:200px;
-//     width:200px;
-//     position: relative;
-// }
+.leaflet-container{
+    height:600px;
+    width:1000px;
+    position: relative;
+}
