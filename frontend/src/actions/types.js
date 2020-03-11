@@ -1,0 +1,7 @@
+export const GET_GEOJSON='GET_GEOJSON';
+export const GEOJSON_LOADING='GEOJSON_LOADING';
+export const GEOJSON_LOADED='GEOJSON_LOADED';
+export const GET_KINA='GET_KINA';
+export const GET_MUZEA='GET_MUZEA';
+export const GET_CMENTARZE='GET_CMENTARZE';
+export const CHECK_GET='CHECK_GET';

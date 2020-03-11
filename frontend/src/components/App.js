@@ -1,30 +1,41 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import '../css/App.min.css'
-import Header from './Header'
-import Body from './Body'
-import Footer from './Footer'
-import Option from './Option'
+import MainApp from './MainApp'
+import {Provider } from 'react-redux';
+import store from '../store';
+import {connect} from 'react-redux';
+import {getGeojson} from '../actions/geojson'
+import PropTypes from 'prop-types';
 class App extends Component {
+    // constructor(props){
+    //     super(props);
+    //     console.log(props.isLoaded)
+    // }
+    static propTypes={
+        isLoaded: PropTypes.bool,
+        isLoading: PropTypes.bool,
+        
+    }
+    // componentDidMount(){
+    //     store.dispatch(getGeojson());
+    // }
+    
+    
     render() {
         return(
-            
-        <div className="app">
-            <div className="header">
-                <Header />
-            </div>
-            <div className="option">
-                <Option />
-            </div>
-            <div className="body">
-                <Body />
-            </div>
-            <div className="footer">
-                <Footer />
-            </div>
-        </div>
+        <Provider store={store}>
+            <MainApp/>
+       
+        </Provider>
         
         )
     }
 }
+// const mapStateToProps = state =>({
+//     geojson: state.geojson.geojson,
+//     isLoading: state.geojson.isLoading,
+//     isLoaded: state.geojson.isLoaded,
+// })
 ReactDOM.render(<App />,document.getElementById('app'));
+
+// export default connect(mapStateToProps,{getGeojson})(App)
