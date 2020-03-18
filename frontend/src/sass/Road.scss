@@ -1,10 +1,18 @@
 .road__suggestions{
+    position: relative;
     display:grid;
-    width:100%;
+    // width: 80%;
     background-color: #131d2d;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 12fr;
     border: solid 3px black;
+    height: 600px;
+    width: 70%;
+    top: 7%;
+    left:15%;
+    
+   
+   
     
 }
 .road{
@@ -14,13 +22,34 @@
     width:100%;
     height: 40px;
     grid-column: 1/2;
-    color: #faa426;
+    color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
     
     // border-right: solid 3px;
 
 }
+.road-active{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height: 40px;
+    grid-column: 1/2;
+    color: #faa426;
+    cursor: pointer;
+}
 .suggestions{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height: 40px;
+    grid-column: 2/3;
+    border-left: solid 2px white;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+.suggestions-active{
     display: grid;
     justify-content: center;
     align-items: center;
@@ -41,29 +70,58 @@
     border-radius: 15px;
     font-weight: 800;
     &__point{
+        &__add{
+            margin-left: 5%;
+            background-color: #faa426;
+            width: 20%;
+            border-radius: 10%;
+            height:36px;
+            font-weight: 800;
+        }
         margin-top: 5%;
         height: 15%;
+        &__title{
+            display:flex;
+            justify-content: center;
+        }
+    }
+    &__addpoint{
+        cursor:pointer;
+        color: #faa426;
+        margin-top: 6%;
+        font-weight: 800;
+        margin-left: 3%;
+    }
+    &__submit{
+        display:flex;
+        justify-content: center;
+        margin-top: 5%;
+        height: 30px;
+        width: 100%;
+        font-weight: 800;
+        button{
+            height: 30px;
+            width: 80%;
+            font-weight: 800;
+            border-radius: 10px;
+            background-color: #faa426;
+    }
+        
     }
     a{
-        height: 40px;
-        font-size: 25px;
+        height: 30px;
+        font-size: 20px;
+        justify-content: center;
+        align-items: center;
          
         
     }
     input{
         height: 30px;
         width: 70%;
-    }
-    button{
-        height: 30px;
-        width: 20%;
-        font-weight: 800;
+        margin-left: 3%;
     }
     
     
-}
-#submit{
-    height: 30px;
-    width: 80%;
-    font-weight: 800;
+    
 }

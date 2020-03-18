@@ -12,6 +12,7 @@ const initialState={
     pomniki:[],
     silownie:[],
     teatry:[],
+    name: ''
 }
 
 export default function(state = initialState,action){

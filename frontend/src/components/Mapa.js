@@ -1,23 +1,47 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import {Map, Marker, Popup, TileLayer, GeoJSON, LayersControl,LayerGroup,withLeaflet,MapControl} from 'react-leaflet'
 import {getGeojson} from '../actions/geojson'
 import {connect} from 'react-redux';
 const { BaseLayer, Overlay } = LayersControl
 import MapInfo from "./MapInfo";
 import Routing from "./RoutingMachine";
+import Road from './Road'
 class Mapa extends Component {
     constructor(props) {
-        
+      
         super(props)
         this.state = {
           lat: 51.246452,
           lng: 22.568445,
           zoom: 12,
           isMapInit: false,
+          name: '',
+          coordinates: [],
+          coord1: [],
+          coord2: [],
+          coord3: [],
+          coord4: [],
         }
 
         
       }
+      callbackcoords = (data1,data2,data3,data4) =>{
+        this.setState({
+          coord1: data1,
+          coord2: data2,
+          coord3: data3,
+          coord4: data4,
+        })
+      }
+      callback = (data,datacord)=> {
+        this.setState({
+          name: data,
+          coordinates: datacord
+
+        })
+      }
+      
+      
       saveMap = map => {
         this.map = map;
         this.setState({
@@ -45,12 +69,18 @@ class Mapa extends Component {
    
      }
       render() {
-        // const geo = this.props.geojson;
+        
         const { lat, lng, zoom } = this.state;
         const position = [lat,lng];
+        let name_mapa = 'dasdsa'
         return (
             
-            <div>
+            <div className="body__elements__frame__main">
+            <h1>{name_mapa}</h1>
+            <div className="body__elements__frame__options">
+                <div className="body__elements__option__road"><Road name={this.state.name} coordinates={this.state.coordinates} callbackcoords={this.callbackcoords}/></div>
+            </div>
+            <div className="body__elements__frame__map">
         <Map center={position} zoom={zoom} ref={this.saveMap}>
         <LayersControl position="topright">
         
@@ -60,13 +90,11 @@ class Mapa extends Component {
         />
         {/* <Routing map={this.map} /> */}
         <Overlay name="Pomniki">
-          <GeoJSONWithPomnik  data={this.props.pomniki} 
-          // onEachFeature={this.onEachFeature.bind(this)}
+          <GeoJSONWithPomnik callbackfunc={this.callback} data={this.props.pomniki} 
            />
-          {/* this.props.kina, this.props.silownie, this.props.cmentarze, this.props.festiwale,this.props.kluby,this.props.muzea,this.props.teatry */}
         </Overlay>
         <Overlay name="Siłownie">
-          <GeoJSONWithPomnik  data={this.props.silownie}/>
+          <GeoJSONWithPomnik  setname={name_mapa} data={this.props.silownie}/>
         </Overlay>
         <Overlay name="Teatry">
           <GeoJSONWithPomnik  data={this.props.teatry}/>
@@ -85,6 +113,7 @@ class Mapa extends Component {
         </Overlay>
         </LayersControl>
         </Map>
+          </div>
             </div>
         );
     }
@@ -105,15 +134,26 @@ const mapa = {
     }
   ]
 }
-const GeoJSONWithPomnik = props => {
+const GeoJSONWithPomnik = (props) => {
+  const [name, setName] = useState("")
+  const [coordinates, setCoordinates] = useState([])
+  
+  function increment(name1,coordinates1) {
+    setName(name1);
+    setCoordinates(coordinates1);
+  }
   const handleOnEachFeature = (feature, layer) => {
     
+    let feature1 = layer.feature.geometry.coordinates
     let properties= layer.feature.properties
-    
     let table = "<table>"  
     let table1 = "</table>" 
     let index = ""
     let submit = ""
+    let submit1 = ""
+    let submit2 = ""
+    let submit3 = ""
+    let submit4 = ""
 
 for (let key of Object.keys(properties)) {
   
@@ -125,31 +165,40 @@ for (let key of Object.keys(properties)) {
     
   }
   index += `<tr><td>${key}:</td><td>${properties[key]}</td></tr>`
+  submit1 = `<form action="${properties[key]}"><input type="submit" onClick={() =>setCount(count+1)} value="Dodaj punkt do wyznaczania trasy nr 1" /></form>`
+  submit2 = `<form action="${properties[key]}"><input type="submit" value="Dodaj punkt do wyznaczania trasy nr 2" /></form>`
+  submit3 = `<form action="${properties[key]}"><input type="submit" value="Dodaj punkt do wyznaczania trasy nr 3" /></form>`
+  submit4 = `<form action="${properties[key]}"><input type="submit" value="Dodaj punkt do wyznaczania trasy nr 4" /></form>`
   
 }
-let tabela = table + index  + table1 + submit
-
+let tabela = table + index  + table1 + submit 
+let name_of_properties = properties.nazwa
+let feature_of_geometry = feature1[0]
 let popupContent = tabela;
     layer.bindPopup(popupContent);
     layer.on({
       mouseover: e => {
+        
         layer.openPopup();
+        console.log(properties.nazwa)
+        props.callbackfunc(properties.nazwa,feature_of_geometry)
+        console.log(feature_of_geometry)
+        console.log(name_of_properties)
+        // props.setName = name_of_properties
+        increment(name_of_properties)
       },
       mouseclick: e=>{
         layer.closePopup
       }
-      // mouseout: e => {
-      //   layer.closePopup();
-      // }
     });
   };
-  return <GeoJSON {...props} onEachFeature={handleOnEachFeature} />;
+  return (
+  <>
+  <GeoJSON {...props} onEachFeature={handleOnEachFeature} />
+ 
+  </>      
+    );
 }
-
-
-// GeoJSONWithLayer.defaultProps = {
-//   popupContent: 'brak danych',
-// }
 const mapStateToProps = state =>({
     
   isLoading: state.geojson.isLoading,
