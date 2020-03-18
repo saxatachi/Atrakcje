@@ -10,11 +10,6 @@ class Body extends Component {
         return (
         <>    
             <div className="body__elements">
-                <div className="body__elements__option">
-                    <div className="body__elements__option__road"><Road /></div>
-                    <div className="body__elements__option__free"></div>
-                </div>
-                <div className="body__elements__color"></div>
                 <div className="body__elements__frame"><Mapa /></div>
             </div>
         </>

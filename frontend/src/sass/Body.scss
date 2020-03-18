@@ -2,34 +2,45 @@
     display:grid;
     height:100%;
     width: 100%;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr;
-    &__color{
-        background-color: yellow;
-    }
+    grid-template-rows: 800px;
+    // &__color{
+    //     background-color: yellow;
+    // }
     &__option{
         
         display: grid;
-        background-color:white;
-        grid-template-columns: 1fr 1fr;
+        background-color:blue;
+        grid-column: 1/2;
+        grid-row: 1/2;
         
-        &__road{
-            position: absolute;
-            grid-column: 1/2;
-            grid-row: 1/2;
-            top:15%;
-            left:10%;
+        // &__road{
+        //     position: absolute;
+        //     // grid-column: 1/2;
+        //     // grid-row: 1/2;
+        //     top:15%;
+        //     left:10%;
             
-        }
+        // }
     }
     &__frame{
-        position: absolute;
-        
-        height: 60%;
-        width: 50%;
-        top: 15%;
-        left: 47.5%;
-        
+        display: grid;
+        height: 700px;
+        &__main{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        &__options{
+            display: grid;
+            grid-column: 1/2;
+            // top: 20%;
+            // justify-content: center;
+            // align-items: center;
+        }
+        &__map{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
     }
 }
 .leaflet-container{
