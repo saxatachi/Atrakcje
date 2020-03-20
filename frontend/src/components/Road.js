@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../css/Road.min.css'
 import '../css/Body.min.css'
 import {connect} from 'react-redux';
+import Suggestions from './Suggestion'
 class Road extends Component {
     constructor(props){
         super(props)
@@ -54,7 +55,7 @@ class Road extends Component {
             <div className={road} onClick={this.changeRoad}>Wyznaczanie trasy</div>
             
             <div className={suggestions} onClick={this.changeSuggestion}>Propozycje punktów</div>
-                <div className="road__options">
+                {this.state.road ? <div className="road__options">
                     <div className="road__options__point">
                         <div className="road__options__point__title"><a>Podaj punkt początkowy</a></div>
                         <input ref={this.firstinputRef} placeholder="Pierwszy punkt" ></input><button  onClick={this.handleButton} className="road__options__point__add">Dodaj</button><br />
@@ -68,7 +69,7 @@ class Road extends Component {
                     {this.state.fourth ? null : hideaddPoint }
                     <div className="road__options__submit"><button onClick={this.handleSend}>Wyznacz trasę</button></div>
                 
-            </div>
+            </div>: <Suggestions />}
             </div>
         );
     }
