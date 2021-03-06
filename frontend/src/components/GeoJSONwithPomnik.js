@@ -7,11 +7,6 @@ const GeoJSONWithPomnik = props => {
       let typ =layer.feature.properties.typ
       let tabela= `<table><tr><td>Nazwa :</td><td>${name}</td></tr><tr><td>Imię i nazwisko autora :</td><td>${imie}</td></tr><tr><td>Typ :</td><td>${typ}</td></tr></table>`
       let popupContent = tabela;
-      // if (props.popupContent.length) popupContent = props.popupContent;
-      // else if (feature.properties && feature.properties.popupContent) {
-      //   popupContent = feature.properties.popupContent;
-      // }
-  
       layer.bindPopup(popupContent);
       layer.on({
         mouseover: e => {

@@ -8,14 +8,6 @@ class Routing extends MapLayer {
   
   createLeafletElement() {
     const { map } = this.props;
-    console.log("routing machine pop")
-    console.log(leafletElement)
-    console.log(this.props.pop)
-    console.log("proby")
-    console.log(this.props.proba1.length)
-    console.log(this.props.proba2.length)
-    console.log(this.props.proba3.length)
-    console.log(this.props.proba4.length)
     let latlng1 = L.latLng(this.props.proba1[1],this.props.proba1[0])
     let latlng2 = L.latLng(this.props.proba2[1],this.props.proba2[0])
     let latlng3 = L.latLng(this.props.proba3[1],this.props.proba3[0])

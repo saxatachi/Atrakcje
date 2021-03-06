@@ -24,11 +24,23 @@ class Mapa extends Component {
           coord3: [],
           coord4: [],
           routing: false,
+          featureappear: false,
+          latitude_marker: '',
+          longitude_marker: '',
+          add: false,
+          leaflet_id: ''
         }
-
-        
       }
-      
+      callbackroad = () =>{
+        this.setState({
+          featureappear: false
+        })
+      }
+      callbacksuggestions = () => {
+        this.setState({
+          featureappear: true
+        })
+      }
       callbackcoords = (data1,data2,data3,data4) =>{
         this.setState({
           coord1: data1,
@@ -45,8 +57,6 @@ class Mapa extends Component {
 
         })
       }
-      
-      
       saveMap = map => {
         this.map = map;
         this.setState({
@@ -94,15 +104,14 @@ class Mapa extends Component {
           pop += pop4 
         }
         const correct = pop
-        console.log("correct")
-        console.log(correct)
+        
         const { lat, lng, zoom } = this.state;
         const position = [lat,lng];
         return (
             
             <div className="body__elements__frame__main">
             <div className="body__elements__frame__options">
-                <div className="body__elements__option__road"><Road name={this.state.name} coordinates={this.state.coordinates} callbackcoords={this.callbackcoords}/></div>
+                <div className="body__elements__option__road"><Road add={this.state.add} name={this.state.name} callbacksuggestions={this.callbacksuggestions} callbackroad={this.callbackroad} coordinates={this.state.coordinates} callbackcoords={this.callbackcoords} latitude_marker={this.state.latitude_marker} longitude_marker={this.state.longitude_marker}/></div>
             </div>
             <div className="body__elements__frame__map">
         <Map center={position} zoom={zoom} ref={this.saveMap}>
@@ -112,19 +121,39 @@ class Mapa extends Component {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
-
+        {this.state.featureappear ? 
         <FeatureGroup>
           <EditControl
       position='topleft'
-      onEdited={this._onEditPath}
-      onCreated={e => console.log(e)}
+      onEdited={e =>{ 
+        let ada = e.layers._layers._latlng
+        console.log(e)
+        
+
+        }}
+      onCreated={
+        e =>{
+          console.log(e.layer)
+          let number = e.layer._leaflet_id
+      this.setState({
+        latitude_marker: e.layer._latlng.lat,
+        longitude_marker: e.layer._latlng.lng,
+        add: true,
+        leaflet_id: e.layer._leaflet_id
+      })
+      
+      }}
       onDeleted={this._onDeleted}
       draw={{
-        rectangle: false
+        rectangle: false,
+        polyline: false,
+        circle: false,
+        circlemarker: false,
+        polygon: false,
       }}
     />
     
-  </FeatureGroup>
+  </FeatureGroup>: null}
         <Overlay name="Pomniki">
           <GeoJSONWithPomnik callbackfunc={this.callback} data={this.props.pomniki} 
            />
