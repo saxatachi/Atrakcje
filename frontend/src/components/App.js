@@ -7,10 +7,6 @@ import {connect} from 'react-redux';
 import {getGeojson} from '../actions/geojson'
 import PropTypes from 'prop-types';
 class App extends Component {
-    // constructor(props){
-    //     super(props);
-    //     console.log(props.isLoaded)
-    // }
     static propTypes={
         isLoaded: PropTypes.bool,
         isLoading: PropTypes.bool,

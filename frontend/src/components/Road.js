@@ -55,6 +55,7 @@ class Road extends Component {
             <div className={road} onClick={this.changeRoad}>Wyznaczanie trasy</div>
             
             <div className={suggestions} onClick={this.changeSuggestion}>Propozycje punktów</div>
+            
                 {this.state.road ? <div className="road__options">
                     <div className="road__options__point">
                         <div className="road__options__point__title"><a>Podaj punkt początkowy</a></div>
@@ -69,7 +70,8 @@ class Road extends Component {
                     {this.state.fourth ? null : hideaddPoint }
                     <div className="road__options__submit"><button onClick={this.handleSend}>Wyznacz trasę</button></div>
                 
-            </div>: <Suggestions />}
+            </div>: <Suggestions add={this.props.add} longitude_marker={this.props.longitude_marker} latitude_marker={this.props.latitude_marker} callbacksuggestions={this.props.callbacksuggestions} />}
+            
             </div>
         );
     }
@@ -79,6 +81,8 @@ class Road extends Component {
     }
     handleButton=()=>{
         this.firstinputRef.current.value = this.props.name
+        
+        console.log(this.firstinputRef.current.value)
         this.setState({
             firstcoordinates: this.props.coordinates
         })
@@ -102,7 +106,7 @@ class Road extends Component {
         })
     }
     changeRoad=()=>{
-        
+        this.props.callbackroad()
         this.setState((state)=>{
             return{
                 road: true,

@@ -7,6 +7,7 @@ import Option from './Option'
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getGeojson} from '../actions/geojson'
+import ClipLoader from "react-spinners/ClipLoader";
 class MainApp extends Component {
     constructor(props){
         super(props);
@@ -35,16 +36,13 @@ class MainApp extends Component {
             <div className="header">
                 <Header />
             </div>
-            {/* <div className="option">
-                <Option />
-            </div> */}
             <div className="body">
                 <Body />
             </div>
-            <div className="footer">
+            {/* <div className="footer">
                 <Footer />
-            </div>
-        </div> : <h1>Jebać disa</h1>}
+            </div> */}
+        </div> : <ClipLoader />}
     </>    
         );
     }
