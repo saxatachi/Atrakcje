@@ -12,11 +12,6 @@ class App extends Component {
         isLoading: PropTypes.bool,
         
     }
-    // componentDidMount(){
-    //     store.dispatch(getGeojson());
-    // }
-    
-    
     render() {
         return(
         <Provider store={store}>
@@ -27,11 +22,5 @@ class App extends Component {
         )
     }
 }
-// const mapStateToProps = state =>({
-//     geojson: state.geojson.geojson,
-//     isLoading: state.geojson.isLoading,
-//     isLoaded: state.geojson.isLoaded,
-// })
-ReactDOM.render(<App />,document.getElementById('app'));
 
-// export default connect(mapStateToProps,{getGeojson})(App)
+ReactDOM.render(<App />,document.getElementById('app'));

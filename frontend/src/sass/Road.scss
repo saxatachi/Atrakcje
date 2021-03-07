@@ -94,6 +94,7 @@
             justify-content: center;
         }
     }
+
     &__addpoint{
         cursor:pointer;
         color: #faa426;
@@ -133,4 +134,70 @@
     
     
     
+}
+.suggestion__options{
+    // display:grid;
+    display:flex;
+    flex-direction: column;
+    position: relative;
+    background-color: grey;
+    grid-column: 1/3;
+    margin: 20px;
+    margin-top: 0px;
+    border-radius: 15px;
+    font-weight: 800;
+    padding:20px;
+    &__element{
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        &__input{
+            display: flex;
+            justify-content: center;
+        }
+        &__button{
+            display:flex;
+            justify-content: center;
+        button {
+            height: 30px;
+            width: 80%;
+            font-weight: 800;
+            border-radius: 10px;
+            background-color: #faa426;
+        }
+    }
+        textarea{
+            width:70%;
+            margin-bottom: 1rem;
+        }
+        label{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            font-size: 20px;
+            text-align: center;
+        }
+        input{
+            height: 30px;
+            width: 70%;
+            margin-bottom: 1.5rem;
+        }
+    }
+    &__point{
+        &__add{
+            margin-left: 5%;
+            background-color: #faa426;
+            width: 20%;
+            border-radius: 10%;
+            height:36px;
+            font-weight: 800;
+        }
+        margin-top: 5%;
+        height: 15%;
+        &__title{
+            display:flex;
+            justify-content: center;
+        }
+    }
 }
