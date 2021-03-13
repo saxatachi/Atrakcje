@@ -27,7 +27,7 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-preset-react": "^6.24.1",
     "font-awesome": "^4.7.0",
     "leaflet": "^1.6.0",
