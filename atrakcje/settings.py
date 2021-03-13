@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dj_database_url
+
 # import django_heroku
 if os.name == 'nt':
     import platform
@@ -38,7 +40,7 @@ SECRET_KEY = '+)cn9q+sed5$-y9a=vuc-h9ub&@q+lmo+03gj=la%fz=wst5^+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -135,8 +137,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-import dj_database_url
-DATABASES={}
-DATABASES['default'] = dj_database_url.config(default='postgres://leeqviudlrnkqb:a11a98ce2db402986226b6dc35606f2b508d67889922fd2bf6126662b3662f46@ec2-79-125-4-72.eu-west-1.compute.amazonaws.com:5432/dbdg16em0mm93k')
-DATABASES['default']['ENGINE']='django.contrib.gis.db.backends.postgis'
+
 
