@@ -53,7 +53,8 @@ django-sekizai==2.0.0
 django-static-root-finder==0.3.1
 django-storages==1.11.1
 djangorestframework==3.9.4
-GDAL==2.4.3
+# GDAL==2.4.3
+gdal-bin
 generateDS==2.37.10
 geos==0.2.2
 gitdb==4.0.2
