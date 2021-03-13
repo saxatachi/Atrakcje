@@ -69,7 +69,6 @@ Pygments==2.7.2
 PyJWT==1.7.1
 pylint==2.3.1
 pyparsing==2.4.7
-pypiwin32==223
 pyrsistent==0.17.3
 pytest==6.1.2
 pytz==2019.1
@@ -77,5 +76,5 @@ urllib3==1.25.11
 virtualenv==20.0.13
 virtualenv-clone==0.5.4
 whitenoise==5.0.1
-pypiwin32
+
 
