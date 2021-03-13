@@ -133,13 +133,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
 import dj_database_url
+
 DATABASES={}
-DATABASES['default'] = dj_database_url.config(default=os.environ['DATABASE_URL'])
+DATABASES['default'] =  dj_database_url.config()
 DATABASES['default']['ENGINE']='django.contrib.gis.db.backends.postgis'
 

@@ -76,5 +76,6 @@ urllib3==1.25.11
 virtualenv==20.0.13
 virtualenv-clone==0.5.4
 whitenoise==5.0.1
+dj_database_url
 
 
