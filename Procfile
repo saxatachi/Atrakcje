@@ -1,0 +1,1 @@
+web: gunicorn atrakcje.wsgi --log-file -
