@@ -136,7 +136,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
 import dj_database_url
-
+print(dj_database_url.config())
 DATABASES={}
 DATABASES['default'] =  dj_database_url.config()
 DATABASES['default']['ENGINE']='django.contrib.gis.db.backends.postgis'
