@@ -95,11 +95,6 @@ python-decouple==3.1
 python-gitlab==2.0.1
 python3-openid==3.1.0
 pytz==2019.1
-pywin32==300
-pywinpty==0.5.7
-typed-ast==1.4.0
-typing-extensions==3.7.4.3
-Unidecode==1.1.1
 urllib3==1.25.11
 virtualenv==20.0.13
 virtualenv-clone==0.5.4
