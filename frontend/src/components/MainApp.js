@@ -11,37 +11,17 @@ import ClipLoader from "react-spinners/ClipLoader";
 class MainApp extends Component {
     constructor(props){
         super(props);
-        console.log(props)
     }
     componentDidMount(){
         this.props.getGeojson()
     }
     render() {
-        if(this.props.isLoaded === false){
-            console.log("nie ma danych")
-        }else{
-            console.log(this.props.muzea)
-            console.log(this.props.kina)
-            console.log(this.props.festiwale)
-            console.log(this.props.cmentarze)
-            console.log(this.props.pomniki)
-            console.log(this.props.silownie)
-
-
-        }
-        
-         return (
+        return (
     <>
         {this.props.isLoaded ?<div className="app">
-            <div className="header">
-                <Header />
-            </div>
             <div className="body">
                 <Body />
             </div>
-            {/* <div className="footer">
-                <Footer />
-            </div> */}
         </div> : <ClipLoader />}
     </>    
         );

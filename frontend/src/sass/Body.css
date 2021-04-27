@@ -1,0 +1,130 @@
+.body__elements {
+  display: -ms-grid;
+  display: grid;
+  height: 100%;
+  width: 100%;
+  -ms-grid-rows: 800px;
+      grid-template-rows: 800px;
+}
+
+.body__elements__option {
+  display: -ms-grid;
+  display: grid;
+  background-color: blue;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+}
+
+.body__elements__option__road {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (min-width: 900px) {
+  .body__elements__option__road {
+    min-width: 450px;
+  }
+}
+
+.body__elements__frame {
+  height: 700px;
+}
+
+.body__elements__frame__main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+}
+
+@media (max-width: 599px) {
+  .body__elements__frame__main {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+}
+
+@media (min-width: 600px) {
+  .body__elements__frame__main {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+}
+
+@media (min-width: 900px) {
+  .body__elements__frame__main {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+@media (max-width: 900px) {
+  .body__elements__frame__main {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.body__elements__frame__options {
+  position: absolute;
+  z-index: 5;
+  left: 0%;
+  bottom: 0%;
+  width: 450px;
+}
+
+@media (max-width: 900px) {
+  .body__elements__frame__options {
+    position: relative;
+  }
+}
+
+.body__elements__frame__map {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+}
+
+@media (min-width: 1200px) {
+  .body__elements__frame__map {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1/2;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1/2;
+  }
+}
+
+@media (max-width: 900px) {
+  .body__elements__frame__map {
+    height: 80vh;
+  }
+}
+
+.leaflet-container {
+  margin: 0;
+  position: absolute;
+}
+/*# sourceMappingURL=Body.css.map */

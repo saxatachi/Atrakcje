@@ -1,6 +1,4 @@
-import React, { Component } from "react";
 import { withLeaflet, MapControl } from "react-leaflet";
-import L from "leaflet";
 
 class MapInfo extends MapControl {
   constructor(props, context) {
@@ -9,7 +7,6 @@ class MapInfo extends MapControl {
       this.panelDiv.innerHTML = `<h2><span>Lat: ${ev.latlng.lat.toFixed(
         4
       )}</span>&nbsp;<span>Lng: ${ev.latlng.lng.toFixed(4)}</span></h2>`;
-      console.log(this.panelDiv.innerHTML);
     });
   }
 

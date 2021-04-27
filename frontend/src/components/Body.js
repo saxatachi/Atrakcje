@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import '../css/Body.min.css'
 import Mapa from './Mapa'
-import Road from './Road'
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 import {getGeojson} from '../actions/geojson'
 class Body extends Component {
     render() {
