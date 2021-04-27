@@ -1,9 +1,11 @@
 from django.shortcuts import render
-
+from rest_framework.decorators import api_view
 from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse,HttpResponseNotFound
 from .models import Baseny,Kina,Silownie,Kluby,Baseny,Cmentarze,Teatry,Zabytki,Festiwale,Srodowisko,Muzea,Pomniki
 from django.core.serializers import serialize
+from .serializers import PropozycjeSerializer,PropozycjePktSerializer
+from rest_framework.response import Response
 #def post_list(request):
 
 
@@ -41,3 +43,12 @@ def geojson(request,warstwa):
 # Create your views here.
 def index(request):
     return render(request,'frontend/index.html')
+@api_view(['POST'])
+def sendtoadmin(request):
+	if request.method == 'POST':
+		serializer = PropozycjePktSerializer(data=request.data)
+		if serializer.is_valid():
+			serializer.save()
+			return HttpResponse("Wysłano")
+		else:
+			return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)

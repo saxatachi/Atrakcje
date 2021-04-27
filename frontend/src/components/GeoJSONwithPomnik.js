@@ -1,6 +1,5 @@
 const GeoJSONWithPomnik = props => {
     const handleOnEachFeature = (feature, layer) => {
-      console.log(layer.feature.properties)
       let name = layer.feature.properties.nazwa
       let imie= layer.feature.properties.imie_i_nazwisko_autora
       let properties= layer.feature.properties

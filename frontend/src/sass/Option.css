@@ -1,0 +1,27 @@
+.option__elements {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  background: -webkit-gradient(linear, left top, right top, from(#555555), to(#bebebe));
+  background: linear-gradient(to right, #555555, #bebebe);
+  background-size: 5px 100%;
+}
+
+.option__elements__option {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  height: 100px;
+}
+
+.option__elements__option a {
+  font-size: 25px;
+  font-weight: 700;
+}
+/*# sourceMappingURL=Option.css.map */

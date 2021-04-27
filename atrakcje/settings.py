@@ -11,40 +11,12 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-# import dj_database_url
-
-# import django_heroku
-# if os.name == 'nt':
-#     import platform
-#     OSGEO4W = r"C:\OSGeo4W"
-#     if '64' in platform.architecture()[0]:
-#         OSGEO4W += "64"
-#     assert os.path.isdir(OSGEO4W), "Directory does not exist: " + OSGEO4W
-#     os.environ['OSGEO4W_ROOT'] = OSGEO4W
-#     os.environ['GDAL_DATA'] = OSGEO4W + r"\share\gdal"
-#     os.environ['PROJ_LIB'] = OSGEO4W + r"\share\proj"
-#     os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH'] 
-# GDAL_LIBRARY_PATH = r'C:\OSGeo4W64\bin\gdal300' 
-# BUILD_WITH_GEO_LIBRARIES=1
-# GDAL_DATA = r'C:\Users\Michal\AppData\Local\Programs\Python\Python37\Lib\site-packages\osgeo\data\gdal'
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SECRET_KEY = os.getenv('SECRET_KEY')
 
+DEBUG = False
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+)cn9q+sed5$-y9a=vuc-h9ub&@q+lmo+03gj=la%fz=wst5^+'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-
-
-# Application definition
-
+ALLOWED_HOSTS = ['https://atrakcje.herokuapp.com/']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -86,23 +58,7 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'atrakcje.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -119,10 +75,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/2.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -136,8 +88,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
 import dj_database_url
-print(dj_database_url.config())
-DATABASES={}
-DATABASES['default'] =  dj_database_url.config()
-DATABASES['default']['ENGINE']='django.contrib.gis.db.backends.postgis'
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(default=os.getenv('DATABASE_URL'))
+
 

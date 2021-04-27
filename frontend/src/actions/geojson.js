@@ -1,8 +1,39 @@
 import axios from 'axios'
 
-import { GET_GEOJSON, GEOJSON_LOADING,GEOJSON_LOADED,GET_KINA,} from './types';
+import { GET_GEOJSON, GEOJSON_LOADING,ADD_FALSE,ADD_TRUE,ADD_LAT_LNG,ROUTING,ROUTING_ON,ROUTING_OFF} from './types';
 
+export const addLatLng = (data) => (dispatch) => {
+    dispatch({ 
+        type: ADD_LAT_LNG,
+        payload: data
+    })
+}
+export const routingon = () => (dispatch) => {
+    dispatch({
+        type: ROUTING_ON
+    })
+}
+export const routingoff = () => (dispatch) => {
+    dispatch({
+        type: ROUTING_OFF
+    })
+}
+export const routing = (data) => (dispatch) => {
+    dispatch({
+        type: ROUTING,
+        payload: data
+    })
+}
+export const addSuggestionTrue = () => (dispatch) =>{
+    dispatch({ type: ADD_TRUE })
+}
+export const addSuggestionFalse = () => (dispatch) =>{
+    dispatch({ type: ADD_FALSE })
+}
 //Get Geojson
+export const sendPoint = (data) => (dispatch) => {
+    axios.post('/send/',data)
+}
 export const getGeojson = () => (dispatch,getState) =>{
     const muzeaurl= '/geojson/Muzea'
     const kinaurl='/geojson/Kina'
@@ -22,7 +53,6 @@ export const getGeojson = () => (dispatch,getState) =>{
     const promise8 = axios.get(teatryurl);
     dispatch({ type: GEOJSON_LOADING })
     Promise.all([promise1,promise2,promise3,promise4,promise5,promise6,promise7,promise8]).then(res=>{
-        
         dispatch({
             type: GET_GEOJSON,
             payload1: res[0].data,
@@ -35,34 +65,7 @@ export const getGeojson = () => (dispatch,getState) =>{
             payload8: res[7].data,
 
         })
-        // dispatch({
-        //     type: GET_MUZEA,
-        //     payload: res[1].data,
-        // })
-        // dispatch({
-        //     type: GET_CMENTARZE,
-        //     payload: res[2].data,
-        // })
-        // dispatch({
-        //     type: CHECK_GET,
-        // })
     })
-    // dispatch({
-    //     type: GEOJSON_LOADED
-    // })
-    // axios.get('/geojson/Muzea')
-    // .then(res =>{
-    //     dispatch({
-    //         type: GET_GEOJSON,
-    //         payload: res.data,
-    //     })
-    // })
-    // axios.get('/geojson/Kina')
-    // .then(res=>({
-    //     type: GET_GEOJSON,
-    //     payload: res.data,
-    // })
-
 }
     
     

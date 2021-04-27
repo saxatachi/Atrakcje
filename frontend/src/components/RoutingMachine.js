@@ -3,7 +3,6 @@ import L from "leaflet";
 import "leaflet-routing-machine";
 import "lrm-google";
 import { withLeaflet } from "react-leaflet";
-
 class Routing extends MapLayer {
   
   createLeafletElement() {
@@ -21,35 +20,26 @@ class Routing extends MapLayer {
     if(this.props.proba4.length >0){
       popuprouting.push(latlng4)
     }
-    console.log("popup")
-    console.log(popuprouting)
-    console.log(L.latLng(this.props.proba2[1],this.props.proba2[0]))
     
-    
-    let leafletElement = L.Routing.control({
+    var leafletElement = L.Routing.control({
       waypoints: popuprouting,
-      
-        // this.props.pop
-        // L.latLng(this.props.proba1[1],this.props.proba1[0]),L.latLng(this.props.proba2[1],this.props.proba2[0])
-        // L.latLng(51.2565355, 22.5648726),L.latLng(51.2416419, 22.5065198),L.latLng(51.2356221, 22.5236389),L.latLng(51.2328177, 22.5357899)
-        // L.latLng(51.2617174, 22.5315643),L.latLng(51.2435915, 22.5136702),L.latLng(51.2416419, 22.5065198),L.latLng(51.2360797, 22.5231075)
-      
-      // router: new L.Routing.Google(),
       lineOptions: {
         styles: [
           {
-            color: "blue",
+            color: "red",
             opacity: 0.6,
             weight: 4
           }
         ]
       },
       language: 'pl',
-      addWaypoints: false,
+      addWaypoints: true,
       draggableWaypoints: false,
       fitSelectedRoutes: false,
       showAlternatives: false
     }).addTo(map.leafletElement);
+    this.props.callbackplan(leafletElement.getPlan())
+    this.props.routing(leafletElement)
     return leafletElement.getPlan();
   }
 }

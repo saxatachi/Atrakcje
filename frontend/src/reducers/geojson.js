@@ -1,4 +1,4 @@
-import {GET_GEOJSON,GEOJSON_LOADING,GEOJSON_LOADED,GET_KINA,GET_MUZEA,GET_CMENTARZE,CHECK_GET} from '../actions/types.js'
+import {GET_GEOJSON,GEOJSON_LOADING,ADD_TRUE,ADD_FALSE,ADD_LAT_LNG,ROUTING,ROUTING_ON,ROUTING_OFF} from '../actions/types.js'
 const initialState={
     something: 'text',
     geojson:[],
@@ -12,11 +12,49 @@ const initialState={
     pomniki:[],
     silownie:[],
     teatry:[],
-    name: ''
+    name: '',
+    add: false,
+    latidute: '',
+    longitude: '',
+    routing: null,
+    routingon: false
 }
 
 export default function(state = initialState,action){
     switch(action.type){
+        case ROUTING:
+            return{
+                ...state,
+                routing: action.payload
+            }
+        case ROUTING_ON:
+            return{
+                ...state,
+                routingon: true
+
+            }
+        case ROUTING_OFF:
+            return{
+                ...state,
+                routingon: false
+    
+            }
+        case ADD_LAT_LNG:
+            return{
+                ...state,
+                latidute: action.payload.latidute,
+                longitude: action.payload.longitude
+            }
+        case ADD_FALSE:
+            return{
+                ...state,
+                add:false
+            }
+        case ADD_TRUE:
+            return{
+                ...state,
+                add:true
+            }
         case GEOJSON_LOADING:
             return{
                 ...state,
@@ -25,8 +63,8 @@ export default function(state = initialState,action){
         case GET_GEOJSON:
             return{
                 ...state,
-                kina: action.payload1,
-                muzea: action.payload2,
+                muzea: action.payload1,
+                kina: action.payload2,
                 cmentarze: action.payload3,
                 festiwale: action.payload4,
                 kluby: action.payload5,
@@ -35,14 +73,7 @@ export default function(state = initialState,action){
                 teatry: action.payload8,
                 isLoading: false,
                 isLoaded: true,
-                
             }
-            // case GEOJSON_LOADED:
-            //     return{
-            //         ...state,
-            //         isLoaded: true,
-            //         isLoading: false,
-            //     }   
 
         default: 
             return state;    
