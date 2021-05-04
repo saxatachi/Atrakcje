@@ -61,7 +61,7 @@ Pillow==6.2.0
 pipenv==2020.11.15
 psycopg2==2.8.4
 purl==1.5
-py==1.9.0
+py==1.10.0
 pycountry==19.8.18
 pycparser==2.19
 PyGithub==1.46
