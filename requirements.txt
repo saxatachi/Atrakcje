@@ -11,7 +11,7 @@ boto3==1.17.27
 botocore==1.20.27
 cached-property==1.5.2
 dj-database-url==0.5.0
-Django==2.2.10
+Django==2.2.24
 django-adminactions==1.9
 django-ads==1.1.1
 django-allauth==0.39.1
